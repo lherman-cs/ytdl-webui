@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM arm32v6/golang:alpine
 
 WORKDIR /go/src/app
 COPY . .
@@ -8,5 +8,4 @@ RUN apk update &&\
     go-wrapper download &&\
     go-wrapper install &&\
     apk del git
-
 CMD ["go-wrapper", "run"]
