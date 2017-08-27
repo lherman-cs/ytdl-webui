@@ -13,7 +13,10 @@ func Download(url string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	file, _ := os.Create(path.Join("/mnt", vid.Title+".mp4"))
+	file, err := os.Create(path.Join("data", vid.Title+".mp4"))
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer file.Close()
 	vid.Download(vid.Formats.Best(ytdl.FormatAudioEncodingKey)[1], file)
 }
